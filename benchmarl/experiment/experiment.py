@@ -15,6 +15,7 @@ from collections import deque, OrderedDict
 from dataclasses import dataclass, MISSING
 from pathlib import Path
 from typing import Dict, List, Optional
+from moviepy.editor import ImageSequenceClip
 
 import torch
 from tensordict import TensorDictBase
@@ -823,6 +824,10 @@ class Experiment(CallbackNotifier):
             step=self.n_iters_performed,
             total_frames=self.total_frames,
         )
+        if video_frames is not None:    
+            fps=30
+            clip = ImageSequenceClip(video_frames, fps=fps)
+            clip.write_gif(f'{self.folder_name/self.name}_{str(self.n_iters_performed)}.gif', fps=fps)
         # Callback
         self._on_evaluation_end(rollouts)
 

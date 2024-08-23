@@ -79,7 +79,7 @@ evaluation: True
 # Whether to render the evaluation (if rendering is available)
 render: True
 # Frequency of evaluation in terms of collected frames (this should be a multiple of on/off_policy_collected_frames_per_batch)
-evaluation_interval: 120_000
+evaluation_interval: 6000
 # Number of episodes that evaluation is run on
 evaluation_episodes: 10
 # If True, when stochastic policies are evaluated, their deterministic value is taken, otherwise, if False, they are sampled
