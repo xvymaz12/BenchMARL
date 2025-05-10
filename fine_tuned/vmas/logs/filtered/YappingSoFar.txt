@@ -1,0 +1,207 @@
+Kapitola o experimentech: Úloha Balance
+
+Tato kapitola popisuje sérii experimentů provedených na úloze "Balance", kde jsme testovali různé reinforcement learning algoritmy a jejich výkonnost. Cílem bylo najít nejefektivnější přístup pro tuto konkrétní úlohu.
+Přehled experimentů
+
+Pro úlohu Balance jsme testovali následující algoritmy:
+
+    IDDPG (Independent Deep Deterministic Policy Gradient)
+
+    IPPO (Independent Proximal Policy Optimization)
+
+    ISAC (Independent Soft Actor-Critic)
+
+    MADDPG (Multi-Agent Deep Deterministic Policy Gradient)
+
+    MAPPO (Multi-Agent Proximal Policy Optimization)
+
+    MASAC (Multi-Agent Soft Actor-Critic)
+
+Každý algoritmus byl spuštěn po dobu 150 iterací a sledovali jsme metriku "mean return", která indikuje kvalitu učení agenta.
+Výsledky a analýza
+Výkonnost algoritmů
+
+Z naměřených dat vyplývají následující závěry:
+
+    Nejvyšší dosažené hodnoty mean return:
+
+        MAPPO: ~65.1 (nejvyšší dosažená hodnota)
+
+        IPPO: ~57.4
+
+        MASAC: ~43.1
+
+        MADDPG: ~28.1
+
+        ISAC: ~27.9
+
+        IDDPG: ~29.4
+
+    Stabilita učení:
+
+        MAPPO a IPPO vykazovaly nejstabilnější růst výkonnosti
+
+        MADDPG a IDDPG měly větší výkyvy v průběhu učení
+
+        ISAC a MASAC dosahovaly dobrých výsledků, ale s menší konzistencí
+
+    Rychlost konvergence:
+
+        MAPPO a IPPO dosahovaly vysokých hodnot mean return již kolem 50. iterace
+
+        Ostatní algoritmy potřebovaly více času na konvergenci
+
+Doporučení pro learning rate
+
+Na základě průběhů učení lze doporučit:
+
+    Pro MAPPO a IPPO (nejúspěšnější algoritmy):
+
+        Začít s learning rate kolem 3e-4
+
+        Implementovat learning rate scheduling s postupným snižováním
+
+    Pro MASAC a ISAC:
+
+        Optimální learning rate se jeví kolem 1e-3
+
+        Důležité je použít vyšší hodnoty kvůli stochastické povaze těchto algoritmů
+
+    Pro MADDPG a IDDPG:
+
+        Doporučená learning rate kolem 1e-4
+
+        Vyžadují pečlivé ladění kvůli nestabilitě
+
+Závěr
+
+Pro úlohu Balance se jako nejvhodnější algoritmy jeví:
+
+    MAPPO - dosáhl nejvyšších absolutních hodnot mean return (~65.1) a vykazoval stabilní průběh učení
+
+    IPPO - velmi podobný výkon jako MAPPO, ale s mírně nižšími maximálními hodnotami (~57.4)
+
+    MASAC - dobrá alternativa s maximem ~43.1, vhodná pro prostředí kde je důležitá explorace
+
+Algoritmy MADDPG, IDDPG a ISAC dosahovaly výrazně nižších hodnot mean return a vykazovaly větší nestabilitu během učení, a proto se pro tuto konkrétní úlohu jeví jako méně vhodné.
+
+Pro budoucí experimenty doporučujeme zaměřit se především na MAPPO a IPPO s optimalizovaným learning rate schedulingem, které prokázaly nejlepší výsledky v této úloze.
+
+
+
+Kapitola o experimentech: Úloha Dispersion
+
+Tato kapitola popisuje sérii experimentů provedených na úloze "Dispersion", kde jsme testovali různé reinforcement learning algoritmy a jejich výkonnost. Cílem bylo najít nejefektivnější přístup pro tuto konkrétní úlohu. Experimenty zahrnovaly jak single-agentové, tak multi-agentové algoritmy, a sledovali jsme metriku "mean return", která indikuje kvalitu učení agentů.
+Přehled experimentů
+
+Pro úlohu Dispersion jsme testovali následující algoritmy:
+
+    IDDPG (Independent Deep Deterministic Policy Gradient)
+
+    IPPO (Independent Proximal Policy Optimization)
+
+    ISAC (Independent Soft Actor-Critic)
+
+    MADDPG (Multi-Agent Deep Deterministic Policy Gradient)
+
+    MAPPO (Multi-Agent Proximal Policy Optimization)
+
+    MASAC (Multi-Agent Soft Actor-Critic)
+
+Každý algoritmus byl spuštěn po dobu 150 iterací, přičemž jsme sledovali metriku "mean return" a časovou náročnost jednotlivých iterací.
+Výsledky a analýza
+1. Výkonnost algoritmů
+
+Z naměřených dat vyplývají následující závěry:
+
+    Nejvyšší dosažené hodnoty mean return:
+
+        MAPPO: ~0.3417 (nejvyšší dosažená hodnota)
+
+        IPPO: ~0.3057
+
+        MASAC: ~0.1583
+
+        MADDPG: ~0.1333
+
+        ISAC: ~0.1583
+
+        IDDPG: ~0.2208
+
+    Stabilita učení:
+
+        MAPPO a IPPO vykazovaly nejstabilnější růst výkonnosti s postupným zvyšováním mean return.
+
+        MADDPG a IDDPG měly větší výkyvy v průběhu učení.
+
+        ISAC a MASAC dosahovaly středních výsledků, ale s menší konzistencí.
+
+    Rychlost konvergence:
+
+        MAPPO a IPPO dosahovaly vysokých hodnot mean return již kolem 50. iterace.
+
+        MADDPG a IDDPG vykazovaly pomalejší konvergenci.
+
+        ISAC a MASAC vyžadovaly více času na stabilizaci výkonu.
+
+2. Časová náročnost
+
+    Nejpomalejší algoritmy:
+
+        MASAC: ~10.20 s/it (průměrná doba na iteraci)
+
+        ISAC: ~9.98 s/it
+
+    Nejrychlejší algoritmy:
+
+        IDDPG: ~7.06 s/it
+
+        IPPO: ~8.99 s/it
+
+    MAPPO a MADDPG vykazovaly střední hodnoty (~9.64 s/it a ~7.32 s/it).
+
+Doporučení pro learning rate
+
+Na základě průběhů učení lze doporučit následující nastavení:
+
+    Pro MAPPO a IPPO (nejúspěšnější algoritmy):
+
+        Začít s learning rate kolem 3e-4.
+
+        Implementovat learning rate scheduling s postupným snižováním pro stabilizaci učení v pozdějších fázích.
+
+    Pro MASAC a ISAC:
+
+        Optimální learning rate se jeví kolem 1e-3.
+
+        Důležité je použít vyšší hodnoty kvůli stochastické povaze těchto algoritmů.
+
+    Pro MADDPG a IDDPG:
+
+        Doporučená learning rate kolem 1e-4.
+
+        Vyžadují pečlivé ladění kvůli nestabilitě během učení.
+
+Závěr
+
+Pro úlohu Dispersion se jako nejvhodnější algoritmy jeví:
+
+    MAPPO
+
+        Dosáhl nejvyšších absolutních hodnot mean return (~0.3417).
+
+        Vykazoval stabilní průběh učení a relativně rychlou konvergenci.
+
+    IPPO
+
+        Velmi podobný výkon jako MAPPO, ale s mírně nižšími maximálními hodnotami (~0.3057).
+
+        Vhodný pro scénáře, kde je preferována rychlejší iterace.
+
+    MASAC
+
+        Dobrá alternativa s maximem ~0.1583, vhodná pro prostředí, kde je důležitá explorace.
+
+Algoritmy MADDPG, IDDPG a ISAC dosahovaly nižších hodnot mean return a vykazovaly větší nestabilitu během učení, a proto se pro tuto konkrétní úlohu jeví jako méně vhodné.
+
+Pro budoucí experimenty doporučujeme zaměřit se především na MAPPO a IPPO s optimalizovaným learning rate schedulingem, které prokázaly nejlepší výsledky v této úloze. Dále by bylo užitečné prozkoumat vliv různých architektur sítí a hyperparametrů na výkonnost algoritmů.

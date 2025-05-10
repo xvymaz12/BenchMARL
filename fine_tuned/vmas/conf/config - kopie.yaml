@@ -22,7 +22,7 @@ experiment:
   share_policy_params: True
   prefer_continuous_actions: True
 
-  gamma: 0.99
+  gamma: 0.9
   lr: 0.00005
   clip_grad_norm: True
   clip_grad_val: 5
@@ -33,10 +33,10 @@ experiment:
 
   exploration_eps_init: 0.8
   exploration_eps_end: 0.01
-  exploration_anneal_frames: 1_000_000
+  exploration_anneal_frames: 5_000_000
 
   max_n_iters: null
-  max_n_frames: 10_000_000
+  max_n_frames: 50_000_000
 
   on_policy_collected_frames_per_batch: 60_000
   on_policy_n_envs_per_worker: 600
@@ -53,6 +53,7 @@ experiment:
   render: True
   evaluation_interval: 120_000
   evaluation_episodes: 200
+
   loggers: []
   create_json: True
 
